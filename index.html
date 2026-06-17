@@ -5,68 +5,607 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexis AI Frameworks</title>
     <style>
+        /* --- FUTURISTIC TYPOGRAPHY CONFIGURATION --- */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
         :root {
+            /* Assigned Palette */
             --brand-purple: #6952DB;
             --dark-navy: #19133C;
             --light-lavender: #E0DBFD;
             --deep-black: #09061A;
+            
+            /* Typography Maps */
+            --font-branding: 'AERISH', 'Orbitron', sans-serif;
+            --font-headings: 'ALEPHOLON', 'Orbitron', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        /* --- GLOBAL RESET & STRUCTURE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-body);
+        }
 
-        body { background-color: var(--deep-black); color: var(--light-lavender); overflow-x: hidden; }
+        body {
+            background-color: var(--deep-black);
+            color: var(--light-lavender);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
+        /* --- STICKY NAVIGATION BAR --- */
         header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 8%; background: rgba(25, 19, 60, 0.85);
-            backdrop-filter: blur(15px); border-bottom: 1px solid rgba(105, 82, 219, 0.2);
-            position: sticky; top: 0; z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(25, 19, 60, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(105, 82, 219, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; font-weight: 900; color: #fff; letter-spacing: 2px; }
+        .logo {
+            font-family: var(--font-branding);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 2px;
+            flex-shrink: 0;
+        }
         .logo span { color: var(--brand-purple); }
 
-        /* Navigation */
-        .nav-wrapper { display: flex; align-items: center; gap: 40px; }
-        .nav-links { display: flex; gap: 25px; list-style: none; }
-        .nav-links a { color: var(--light-lavender); text-decoration: none; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; }
-
-        .header-controls { display: flex; align-items: center; gap: 15px; }
-        .search-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(105, 82, 219, 0.3); padding: 8px 16px; border-radius: 20px; color: #fff; width: 140px; }
-
-        /* Mobile Menu Styles */
-        .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 1001; }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn { display: block; }
-            .nav-wrapper {
-                position: fixed; top: 0; right: -100%; height: 100vh; width: 100%;
-                background: var(--deep-black); flex-direction: column; justify-content: center;
-                transition: 0.4s ease-in-out; gap: 40px;
-            }
-            .nav-wrapper.active { right: 0; }
-            .nav-links { flex-direction: column; align-items: center; }
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 40px;
         }
 
-        /* Hero Section */
-        .hero { padding: 80px 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; min-height: 80vh; }
-        .hero-content h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; color: #fff; margin-bottom: 25px; }
-        .hero-content h1 span { color: var(--brand-purple); }
-        .hero-desc { font-size: 1.1rem; margin-bottom: 40px; max-width: 550px; }
-        .cta-group { display: flex; gap: 15px; }
-        .btn { padding: 14px 32px; border-radius: 50px; font-weight: 700; text-decoration: none; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
-        .btn-primary { background: var(--brand-purple); color: #fff; }
-        .btn-secondary { border: 1px solid rgba(224, 219, 253, 0.3); color: var(--light-lavender); }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a {
+            color: var(--light-lavender);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(105, 82, 219, 0.6);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(105, 82, 219, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #fff;
+            outline: none;
+            font-size: 0.85rem;
+            transition: border-color 0.3s ease;
+            width: 180px;
+        }
+
+        .search-box:focus {
+            border-color: var(--brand-purple);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--light-lavender);
+            font-size: 1.2rem;
+            position: relative;
+            padding: 5px;
+        }
         
-        .hero-visual img { width: 100%; height: auto; border-radius: 12px; }
+        .icon-btn .badge {
+            position: absolute;
+            top: 0; right: 0;
+            background: var(--brand-purple);
+            width: 6px; height: 6px;
+            border-radius: 50%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- TWO-COLUMN HERO SECTION --- */
+        .hero {
+            padding: 100px 8% 80px 8%;
+            display: grid;
+            grid-template-columns: 40% 60%;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            background-color: var(--deep-black);
+            min-height: 80vh;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: var(--brand-purple);
+            filter: blur(180px);
+            opacity: 0.15;
+            top: 0; left: -100px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-headings);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            color: #fff;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+        .hero-content h1 span {
+            color: var(--brand-purple);
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            color: var(--light-lavender);
+            opacity: 0.9;
+            max-width: 550px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-align: center;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: var(--brand-purple);
+            color: #fff;
+            border: 1px solid var(--brand-purple);
+            box-shadow: 0 5px 20px rgba(105, 82, 219, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(105, 82, 219, 0.6);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--light-lavender);
+            border: 1px solid rgba(224, 219, 253, 0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(224, 219, 253, 0.05);
+            border-color: var(--light-lavender);
+        }
+
+        /* Hero Right-Side Image */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .hero-visual img {
+            width: 70%; 
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 30px rgba(105, 82, 219, 0.15));
+            border-radius: 12px;
+        }
+
+        /* --- MODULAR CONTENT CARDS SECTION --- */
+        .modules-section {
+            padding: 80px 8%;
+            background: var(--dark-navy);
+        }
+
+        .section-title {
+            font-family: var(--font-headings);
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .mod-card {
+            background: var(--deep-black);
+            border: 1px solid rgba(105, 82, 219, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .mod-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-purple);
+            box-shadow: 0 10px 30px rgba(9, 6, 26, 0.5);
+        }
+        
+        .mod-thumbnail {
+            width: 100%;
+            height: 140px;
+            background-color: var(--dark-navy);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .mod-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .mod-card h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .mod-card p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* --- ANALYTICS CHART SECTION --- */
+        .chart-section {
+            padding: 80px 8%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .chart-container {
+            background: rgba(25, 19, 60, 0.5);
+            border: 1px solid rgba(105, 82, 219, 0.2);
+            padding: 30px;
+            border-radius: 16px;
+            overflow-x: auto;
+        }
+        .chart-wrapper {
+            min-width: 450px;
+        }
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .chart-svg {
+            width: 100%;
+            height: 200px;
+        }
+        .chart-line {
+            fill: none;
+            stroke: var(--brand-purple);
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+        .chart-grid {
+            stroke: rgba(224, 219, 253, 0.1);
+            stroke-width: 1;
+        }
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 40px 0 40px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* --- INTERACTIVE CASE STUDIES SLIDER --- */
+        .carousel-section {
+            padding: 80px 8%;
+            background: var(--deep-black);
+        }
+        .carousel-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            background: var(--dark-navy);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(105, 82, 219, 0.1);
+        }
+        .slide {
+            display: none;
+        }
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .rating {
+            color: #FFB800;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .slide h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .slide p {
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        .carousel-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(224, 219, 253, 0.1);
+            padding-top: 20px;
+        }
+        .counter {
+            font-family: var(--font-headings);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        .nav-arrows button {
+            background: var(--deep-black);
+            border: 1px solid rgba(105, 82, 219, 0.3);
+            color: #fff;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        .nav-arrows button:hover {
+            background: var(--brand-purple);
+            border-color: var(--brand-purple);
+        }
+
+        /* --- PROMOTIONAL BANNER --- */
+        .promo-banner {
+            margin: 60px 8%;
+            background: linear-gradient(135deg, var(--brand-purple) 0%, #403099 100%);
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(105, 82, 219, 0.3);
+        }
+        .promo-banner h2 {
+            font-family: var(--font-headings);
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .promo-banner p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .btn-white {
+            background: #fff;
+            color: var(--dark-navy);
+        }
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* --- PROFESSIONAL FOOTER SECTION --- */
+        footer {
+            background: #060412;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 60px 8% 20px 8%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-headings);
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .brand-col p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin: 15px 0 25px 0;
+            max-width: 280px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light-lavender);
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--brand-purple);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .links-col ul {
+            list-style: none;
+        }
+
+        .links-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .links-col ul a {
+            color: var(--light-lavender);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .links-col ul a:hover {
+            color: var(--brand-purple);
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        .newsletter-col p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            padding: 12px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(105, 82, 219, 0.3);
+            color: #fff;
+            outline: none;
+            font-family: var(--font-body);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--brand-purple);
+        }
+
+        .newsletter-form button {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .legal-links a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .legal-links a:hover {
+            color: #fff;
+        }
+
+        /* --- RESPONSIVE / MOBILE OPTIMIZATION --- */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
 
         @media (max-width: 768px) {
-            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 40px; }
+            header { flex-wrap: wrap; padding: 15px 5%; }
+            .mobile-menu-btn { display: block; }
+            
+            .nav-wrapper {
+                flex-direction: column;
+                width: 100%;
+                display: none; 
+                gap: 20px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(105, 82, 219, 0.2);
+                margin-top: 15px;
+            }
+            .nav-wrapper.active { display: flex; }
+            
+            .nav-links { flex-direction: column; align-items: center; width: 100%; }
+            .search-box { width: 100%; max-width: 300px; }
+            .header-controls { width: 100%; justify-content: center; }
+
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; padding: 60px 5%; min-height: auto; }
+            .modules-section, .chart-section, .carousel-section { padding: 50px 5%; }
+            .promo-banner { margin: 40px 5%; padding: 40px 20px; }
+
+            .hero-content { margin: 0 auto; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-desc { margin: 0 auto 30px auto; font-size: 1rem; }
             .cta-group { justify-content: center; }
-            .hero-desc { margin-left: auto; margin-right: auto; }
+            
+            .hero-visual img { width: 100%; max-width: 450px; }
+
+            .section-title { font-size: 2rem; }
+            .promo-banner h2 { font-size: 1.8rem; }
+
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .brand-col p { margin: 15px auto 25px auto; }
+            .social-icons { justify-content: center; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
@@ -74,17 +613,29 @@
 
     <header>
         <div class="logo">NEXIS<span>.</span></div>
-        <button class="mobile-menu-btn" id="menuToggle">☰</button>
+        
+        <button class="mobile-menu-btn" id="menuToggle" aria-label="Toggle Menu">☰</button>
+
         <div class="nav-wrapper" id="navWrapper">
             <nav>
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Social</a></li>
                     <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Blog</a></li>
                 </ul>
             </nav>
+
             <div class="header-controls">
-                <input type="text" class="search-box" placeholder="Search...">
+                <input type="text" class="search-box" placeholder="Search systems...">
+                <button class="icon-btn" aria-label="Notifications">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span class="badge"></span>
+                </button>
+                <button class="icon-btn" aria-label="Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                </button>
             </div>
         </div>
     </header>
@@ -92,24 +643,219 @@
     <section class="hero">
         <div class="hero-content">
             <h1>AUTOMATED<br><span>ROBOTIC CORE</span></h1>
-            <p class="hero-desc">Deploy and configure production-grade humanoid frameworks natively within our decentralized neural infrastructure.</p>
+            <p class="hero-desc">Deploy and configure production-grade humanoid frameworks, structural engine workflows, and procedural asset environments natively within our decentralized neural infrastructure.</p>
             <div class="cta-group">
                 <a href="#" class="btn btn-primary">Shop Now</a>
                 <a href="#" class="btn btn-secondary">Contact Us</a>
             </div>
         </div>
+        
         <div class="hero-visual">
-            <img src="https://i.postimg.cc/c4GmLVXQ/craiyon-021832-image.png" alt="Nexis Systems">
+            <img src="https://i.postimg.cc/c4GmLVXQ/craiyon-021832-image.png" alt="Nexis Systems Graphical Interface">
         </div>
     </section>
+
+    <section class="modules-section">
+        <h2 class="section-title">SYSTEM MODULES</h2>
+        <div class="grid-container">
+            
+            <div class="mod-card">
+                <div class="mod-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Import Export Interface">
+                </div>
+                <h3>Import / Export</h3>
+                <p>Seamlessly compile structural multi-format engine assets directly into live neural hardware layers without conversions.</p>
+            </div>
+            
+            <div class="mod-card">
+                <div class="mod-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" alt="Modelling Basics">
+                </div>
+                <h3>Modelling Basics</h3>
+                <p>Generate highly precise hardware chassis simulations via advanced mathematical spline definitions.</p>
+            </div>
+            
+            <div class="mod-card">
+                <div class="mod-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=400&q=80" alt="Environment Engine">
+                </div>
+                <h3>Environment</h3>
+                <p>Construct complex physics-bound atmospheric conditions for accurate sensor cluster testing loops.</p>
+            </div>
+            
+            <div class="mod-card">
+                <div class="mod-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="Advanced Shaders">
+                </div>
+                <h3>Shaders</h3>
+                <p>Render physically precise metallic surfaces, optics, and carbon composites under varied structural stress lines.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="chart-section">
+        <h2 class="section-title">PERFORMANCE TRENDS</h2>
+        <div class="chart-container">
+            <div class="chart-wrapper">
+                <div class="chart-header">
+                    <h4 style="color:#fff;">Monthly Data Core Output</h4>
+                    <span style="color:var(--brand-purple); font-size:0.85rem; font-weight:700;">+24.8% Sync Efficiency</span>
+                </div>
+                <svg class="chart-svg" viewBox="0 0 500 200" preserveAspectRatio="none">
+                    <line class="chart-grid" x1="0" y1="40" x2="500" y2="40"></line>
+                    <line class="chart-grid" x1="0" y1="90" x2="500" y2="90"></line>
+                    <line class="chart-grid" x1="0" y1="140" x2="500" y2="140"></line>
+                    <path class="chart-line" d="M 40,160 L 140,110 L 240,130 L 340,60 L 460,40"></path>
+                    <circle cx="40" cy="160" r="5" fill="#fff"></circle>
+                    <circle cx="140" cy="110" r="5" fill="#fff"></circle>
+                    <circle cx="240" cy="130" r="5" fill="#fff"></circle>
+                    <circle cx="340" cy="60" r="5" fill="#fff"></circle>
+                    <circle cx="460" cy="40" r="5" fill="var(--brand-purple)"></circle>
+                </svg>
+                <div class="chart-labels">
+                    <span>JAN</span>
+                    <span>FEB</span>
+                    <span>MAR</span>
+                    <span>APR</span>
+                    <span>MAY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="carousel-section">
+        <h2 class="section-title">CASE STUDIES</h2>
+        <div class="carousel-wrapper">
+            <div class="slide active">
+                <div class="rating">★★★★★</div>
+                <h3>Quantum Sync Architecture</h3>
+                <p>"Implementing the Nexis structural modules into our automated manufacturing pipelines reduced chassis calibration overhead metrics by roughly 42% over our Q1 timeline."</p>
+            </div>
+            <div class="slide">
+                <div class="rating">★★★★☆</div>
+                <h3>Autonomous Swarm Routing</h3>
+                <p>"The environmental physics configurations generated highly predictable spatial paths when testing our drone swarm arrays under extreme meteorological parameters."</p>
+            </div>
+            <div class="slide">
+                <div class="rating">★★★★★</div>
+                <h3>Procedural Shader Optimization</h3>
+                <p>"Unbelievable rendering response. Designing real-time composite material stresses inside complex simulation environments is now entirely bottleneck-free."</p>
+            </div>
+
+            <div class="carousel-footer">
+                <div class="counter" id="carouselCounter">01/03</div>
+                <div class="nav-arrows">
+                    <button id="prevBtn" aria-label="Previous Slide">←</button>
+                    <button id="nextBtn" aria-label="Next Slide">→</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="promo-banner">
+        <h2>READY TO UPGRADE YOUR PIPELINE?</h2>
+        <p>Get exclusive access to premium shader frameworks and advanced robotics modules with a 20% discount package today.</p>
+        <a href="#" class="btn btn-white">Get Started</a>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            
+            <div class="footer-col brand-col">
+                <div class="logo">NEXIS<span>.</span></div>
+                <p>Advanced structural engine workflows and procedural asset environments for the decentralized era.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="#">Engine Frameworks</a></li>
+                    <li><a href="#">Robotics Modules</a></li>
+                    <li><a href="#">Decentralized Sync</a></li>
+                    <li><a href="#">Pricing Tiers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Community Forum</a></li>
+                    <li><a href="#">Support Hub</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col newsletter-col">
+                <h4>Stay Updated</h4>
+                <p>Join 15,000+ engineers receiving our latest infrastructure updates.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nexis Future Technology Inc. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const navWrapper = document.getElementById('navWrapper');
-        
+
         menuToggle.addEventListener('click', () => {
             navWrapper.classList.toggle('active');
-            menuToggle.textContent = navWrapper.classList.contains('active') ? '✕' : '☰';
+            if(navWrapper.classList.contains('active')) {
+                menuToggle.textContent = '✕';
+            } else {
+                menuToggle.textContent = '☰';
+            }
+        });
+
+        const slides = document.querySelectorAll('.slide');
+        const counterEl = document.getElementById('carouselCounter');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIdx = 0;
+
+        function updateCarousel() {
+            slides.forEach((slide, idx) => {
+                slide.classList.remove('active');
+                if (idx === currentIdx) {
+                    slide.classList.add('active');
+                }
+            });
+            counterEl.textContent = `0${currentIdx + 1}/0${slides.length}`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIdx = (currentIdx + 1) % slides.length;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIdx = (currentIdx - 1 + slides.length) % slides.length;
+            updateCarousel();
         });
     </script>
 </body>
