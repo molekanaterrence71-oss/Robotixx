@@ -48,6 +48,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            gap: 20px;
         }
 
         .logo {
@@ -56,8 +57,31 @@
             font-weight: 900;
             color: #fff;
             letter-spacing: 2px;
+            flex-shrink: 0;
         }
         .logo span { color: var(--brand-purple); }
+
+        /* Navigation Links Layout */
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light-lavender);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(105, 82, 219, 0.6);
+        }
 
         .header-controls {
             display: flex;
@@ -73,6 +97,11 @@
             color: #fff;
             outline: none;
             font-size: 0.85rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: var(--brand-purple);
         }
 
         .icon-btn {
@@ -189,7 +218,7 @@
         .robot-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Keeps aspect ratio clean */
+            object-fit: cover;
         }
 
         /* --- MODULAR CONTENT CARDS SECTION --- */
@@ -225,7 +254,6 @@
             box-shadow: 0 10px 30px rgba(9, 6, 26, 0.5);
         }
         
-        /* Thumbnail/Mini Illustration image layout */
         .mod-thumbnail {
             width: 100%;
             height: 140px;
@@ -406,6 +434,8 @@
 
         /* --- RESPONSIVE LAYOUT --- */
         @media (max-width: 968px) {
+            header { flex-direction: column; padding: 20px 4%; gap: 15px; }
+            .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
             .hero { grid-template-columns: 1fr; text-align: center; }
             .hero-content h1 { font-size: 3.2rem; }
             .cta-group { justify-content: center; }
@@ -419,6 +449,17 @@
 
     <header>
         <div class="logo">NEXIS<span>.</span></div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">Social</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+
         <div class="header-controls">
             <input type="text" class="search-box" placeholder="Search systems...">
             <button class="icon-btn" aria-label="Notifications">
