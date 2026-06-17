@@ -3,578 +3,578 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexis AI // Next-Gen Autonomous Systems</title>
+    <title>Nexis AI Frameworks</title>
     <style>
-        /* --- CSS VARIABLES & THEMING --- */
+        /* --- FUTURISTIC TYPOGRAPHY CONFIGURATION --- */
+        /* Fallbacks set up to mimic ultra-modern wide and tech display geometric typefaces */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
         :root {
-            --bg-dark: #05070f;
-            --card-bg: rgba(10, 14, 30, 0.55);
-            --border-glow: rgba(0, 242, 254, 0.15);
-            --neon-cyan: #00f2fe;
-            --neon-purple: #7f00ff;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --alert-red: #ff3b30;
+            /* Assigned Palette */
+            --brand-purple: #6952DB;
+            --dark-navy: #19133C;
+            --light-lavender: #E0DBFD;
+            --deep-black: #09061A;
+            
+            /* Typography Maps */
+            --font-branding: 'AERISH', 'Orbitron', sans-serif;
+            --font-headings: 'ALEPHOLON', 'Orbitron', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* --- GLOBAL RESET --- */
+        /* --- GLOBAL RESET & STRUCTURE --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            font-family: var(--font-body);
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--deep-black);
+            color: var(--light-lavender);
             overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
+            line-height: 1.6;
         }
-
-        /* --- CYBER GRID BACKDROP --- */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: center top;
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        /* Ambient Fluid Glow Orbs */
-        .glow-orb {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.18;
-            z-index: -1;
-            pointer-events: none;
-        }
-        .orb-1 { top: -150px; right: -100px; background: var(--neon-cyan); }
-        .orb-2 { bottom: -100px; left: -150px; background: var(--neon-purple); }
 
         /* --- STICKY NAVIGATION BAR --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 4%;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 20px 8%;
+            background: rgba(25, 19, 60, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(105, 82, 219, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
-            gap: 20px;
         }
 
         .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
+            font-family: var(--font-branding);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
             letter-spacing: 2px;
-            background: linear-gradient(45deg, #ffffff, var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            flex-shrink: 0;
         }
-        .logo span { color: var(--neon-cyan); -webkit-text-fill-color: initial; }
+        .logo span { color: var(--brand-purple); }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            padding: 6px 14px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
-            white-space: nowrap;
-        }
-        nav a:hover, nav a.active {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
-        }
-
-        /* Header Right Controls Wrapper */
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
+            gap: 15px;
         }
 
-        /* Search Bar Styling */
-        .search-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .search-input {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .search-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(105, 82, 219, 0.3);
+            padding: 8px 16px;
             border-radius: 20px;
-            padding: 8px 16px 8px 38px;
             color: #fff;
-            font-size: 0.85rem;
             outline: none;
-            width: 150px;
-            transition: all 0.3s ease;
-        }
-        .search-input:focus {
-            width: 220px;
-            border-color: var(--neon-cyan);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
-        }
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            width: 14px;
-            height: 14px;
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.4);
-            stroke-width: 2;
-        }
-
-        /* Action Icon Buttons (Notification & Cart) */
-        .icon-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .icon-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: none;
-            stroke: var(--text-muted);
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: stroke 0.3s ease;
-        }
-        .icon-btn:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-1px);
-        }
-        .icon-btn:hover svg {
-            stroke: var(--neon-cyan);
-        }
-
-        /* Notification Alert Dot Badge */
-        .badge-dot {
-            position: absolute;
-            top: 10px;
-            right: 11px;
-            width: 6px;
-            height: 6px;
-            background: var(--alert-red);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--alert-red);
-        }
-
-        /* Cart Number Badge Counter */
-        .badge-count {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background: var(--neon-purple);
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 10px;
-            border: 1px solid var(--bg-dark);
-            box-shadow: 0 0 10px rgba(127, 0, 255, 0.4);
-        }
-
-        .btn-nav {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #fff;
-            padding: 10px 22px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 500;
             font-size: 0.85rem;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        .btn-nav:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
-            transform: translateY(-1px);
         }
 
-        /* --- HERO SPLIT SECTION --- */
-        .hero-container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 60px 8% 120px 8%;
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 80px;
-            align-items: center;
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--light-lavender);
+            font-size: 1.2rem;
+            position: relative;
+            padding: 5px;
         }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0, 242, 254, 0.05);
-            border: 1px solid rgba(0, 242, 254, 0.15);
-            padding: 6px 16px;
-            border-radius: 20px;
-            color: var(--neon-cyan);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-        .hero-tag::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background: var(--neon-cyan);
+        .icon-btn .badge {
+            position: absolute;
+            top: 0; right: 0;
+            background: var(--brand-purple);
+            width: 6px; height: 6px;
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--neon-cyan);
         }
 
-        h1 {
-            font-size: 4.2rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 25px;
-            letter-spacing: -1.5px;
+        /* --- HERO SECTION WITH LARGE ROBOTIC VISUALS --- */
+        .hero {
+            padding: 100px 8% 80px 8%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
         }
-        h1 span {
-            background: linear-gradient(135deg, var(--neon-cyan), #0072ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: var(--brand-purple);
+            filter: blur(180px);
+            opacity: 0.2;
+            top: -100px; left: -100px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-headings);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            color: #fff;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+        .hero-content h1 span {
+            color: var(--brand-purple);
         }
 
         .hero-desc {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            line-height: 1.65;
-            margin-bottom: 45px;
-            max-width: 540px;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--light-lavender);
+            opacity: 0.8;
+            max-width: 550px;
         }
 
         .cta-group {
             display: flex;
             gap: 20px;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            color: #030408;
-            border: none;
-            padding: 16px 38px;
-            border-radius: 30px;
-            font-size: 1rem;
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 8px 30px rgba(0, 242, 254, 0.3);
             transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 242, 254, 0.45);
-        }
-
-        /* --- GLASS INTERFACE CARD (RIGHT SHOWCASE) --- */
-        .showcase-wrapper {
-            position: relative;
-            perspective: 1200px;
-        }
-
-        .glass-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 28px;
-            padding: 35px;
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-            transition: transform 0.1s ease-out;
-            transform-style: preserve-3d;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 35px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 18px;
-        }
-        .sys-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
             letter-spacing: 1px;
         }
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: #00ff66;
-            border-radius: 50%;
-            animation: statusPulse 2s infinite;
+        .btn-primary {
+            background: var(--brand-purple);
+            color: #fff;
+            border: 1px solid var(--brand-purple);
+            box-shadow: 0 5px 20px rgba(105, 82, 219, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(105, 82, 219, 0.6);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--light-lavender);
+            border: 1px solid rgba(224, 219, 253, 0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(224, 219, 253, 0.05);
+            border-color: var(--light-lavender);
         }
 
-        /* Abstract Tech Visualizer Component */
-        .visualizer {
-            height: 200px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px dashed rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
+        /* Large Tech Illustration Vector Placeholder */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .robot-graphic {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--brand-purple) 0%, transparent 70%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            margin-bottom: 30px;
-            overflow: hidden;
+            border: 1px dashed rgba(105, 82, 219, 0.4);
+            animation: pulseContainer 4s infinite ease-in-out;
         }
-        .core-mesh {
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--neon-cyan);
-            border-radius: 50%;
-            position: relative;
-            animation: rotateClockwise 12s linear infinite;
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.25);
-        }
-        .core-mesh::after {
-            content: '';
-            position: absolute;
-            top: 15px; left: 15px; right: 15px; bottom: 15px;
-            border: 2px dashed var(--neon-purple);
-            border-radius: 50%;
-            animation: rotateCounterClockwise 6s linear infinite;
+        .robot-graphic svg {
+            width: 200px;
+            height: 200px;
+            fill: var(--light-lavender);
+            filter: drop-shadow(0 0 20px var(--brand-purple));
         }
 
-        /* Metrics Grid Layout */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        /* --- MODULAR CONTENT CARDS SECTION --- */
+        .modules-section {
+            padding: 80px 8%;
+            background: var(--dark-navy);
         }
-        .metric-box {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 18px;
-            border-radius: 14px;
-        }
-        .metric-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-        .metric-value {
-            font-size: 1.5rem;
-            font-weight: 700;
+
+        .section-title {
+            font-family: var(--font-headings);
+            font-size: 2.5rem;
             color: #fff;
+            margin-bottom: 40px;
+            text-align: center;
         }
 
-        /* --- CSS KEYFRAME ANIMATIONS --- */
-        @keyframes statusPulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.5); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 102, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
-        }
-        @keyframes rotateClockwise {
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes rotateCounterClockwise {
-            100% { transform: rotate(-360deg); }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
 
-        /* --- RESPONSIVE STRUCTURAL BREAKPOINTS --- */
-        @media (max-width: 1250px) {
-            header {
-                flex-direction: column;
-                padding: 20px;
-                gap: 15px;
-            }
-            .header-controls {
-                width: 100%;
-                justify-content: center;
-            }
+        .mod-card {
+            background: var(--deep-black);
+            border: 1px solid rgba(105, 82, 219, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .mod-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-purple);
+            box-shadow: 0 10px 30px rgba(9, 6, 26, 0.5);
+        }
+        .mod-icon {
+            width: 45px; height: 45px;
+            background: rgba(105, 82, 219, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--brand-purple);
+        }
+        .mod-card h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .mod-card p {
+            font-size: 0.9rem;
+            opacity: 0.7;
         }
 
-        @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding-top: 40px;
-                gap: 60px;
-            }
-            .hero-desc { margin: 0 auto 45px auto; }
+        /* --- ANALYTICS CHART SECTION --- */
+        .chart-section {
+            padding: 80px 8%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .chart-container {
+            background: rgba(25, 19, 60, 0.5);
+            border: 1px solid rgba(105, 82, 219, 0.2);
+            padding: 30px;
+            border-radius: 16px;
+        }
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .chart-svg {
+            width: 100%;
+            height: 200px;
+        }
+        .chart-line {
+            fill: none;
+            stroke: var(--brand-purple);
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+        .chart-grid {
+            stroke: rgba(224, 219, 253, 0.1);
+            stroke-width: 1;
+        }
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 40px 0 40px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* --- INTERACTIVE CASE STUDIES SLIDER --- */
+        .carousel-section {
+            padding: 80px 8%;
+            background: var(--deep-black);
+        }
+        .carousel-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            background: var(--dark-navy);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(105, 82, 219, 0.1);
+        }
+        .slide {
+            display: none;
+        }
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .rating {
+            color: #FFB800;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .slide h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .slide p {
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        .carousel-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(224, 219, 253, 0.1);
+            padding-top: 20px;
+        }
+        .counter {
+            font-family: var(--font-headings);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        .nav-arrows button {
+            background: var(--deep-black);
+            border: 1px solid rgba(105, 82, 219, 0.3);
+            color: #fff;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        .nav-arrows button:hover {
+            background: var(--brand-purple);
+            border-color: var(--brand-purple);
+        }
+
+        /* --- PROMOTIONAL BANNER --- */
+        .promo-banner {
+            margin: 60px 8%;
+            background: linear-gradient(135deg, var(--brand-purple) 0%, #403099 100%);
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(105, 82, 219, 0.3);
+        }
+        .promo-banner h2 {
+            font-family: var(--font-headings);
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .promo-banner p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .btn-white {
+            background: #fff;
+            color: var(--dark-navy);
+        }
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* --- FOOTER SECTION --- */
+        footer {
+            padding: 40px 8%;
+            background: #060412;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes pulseContainer {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE LAYOUT --- */
+        @media (max-width: 968px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-content h1 { font-size: 3.2rem; }
             .cta-group { justify-content: center; }
-            h1 { font-size: 3.4rem; }
-            .glass-card { max-width: 550px; margin: 0 auto; }
-        }
-
-        @media (max-width: 640px) {
-            h1 { font-size: 2.6rem; }
-            .metrics-grid { grid-template-columns: 1fr; gap: 12px; }
-            nav { gap: 5px; }
-            nav a { padding: 4px 8px; font-size: 0.8rem; }
-            .search-input { width: 120px; }
-            .search-input:focus { width: 160px; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            footer { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-
     <header>
         <div class="logo">NEXIS<span>.</span></div>
-        
-        <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#">Platform</a>
-            <a href="#">Robotics</a>
-            <a href="#">Reviews</a>
-            <a href="#">Blog</a>
-            <a href="#">Social</a>
-            <a href="#">FAQ</a>
-        </nav>
-
         <div class="header-controls">
-            <div class="search-wrapper">
-                <svg class="search-icon" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input type="text" class="search-input" placeholder="Search...">
-            </div>
-
+            <input type="text" class="search-box" placeholder="Search systems...">
             <button class="icon-btn" aria-label="Notifications">
-                <svg viewBox="0 0 24 24">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                </svg>
-                <span class="badge-dot"></span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                <span class="badge"></span>
             </button>
-
             <button class="icon-btn" aria-label="Cart">
-                <svg viewBox="0 0 24 24">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <span class="badge-count">2</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             </button>
-            
-            <button class="btn-nav">Launch Console</button>
         </div>
     </header>
 
-    <main class="hero-container">
+    <section class="hero">
         <div class="hero-content">
-            <div class="hero-tag">Next-Gen Autonomous Systems</div>
-            <h1>The Future of <span>Robotic Intelligence</span> Is Here.</h1>
-            <p class="hero-desc">
-                Architecting premium humanoid frameworks and decentralized machine cognitive networks. Elevate functional operational limits with real-time hardware sync.
-            </p>
+            <h1>AUTOMATED<br><span>ROBOTIC CORE</span></h1>
+            <p class="hero-desc">Deploy and configure production-grade humanoid frameworks, structural engine workflows, and procedural asset environments natively within our decentralized neural infrastructure.</p>
             <div class="cta-group">
-                <button class="btn-primary">Initialize Core Systems</button>
+                <a href="#" class="btn btn-primary">Shop Now</a>
+                <a href="#" class="btn btn-secondary">Contact Us</a>
             </div>
         </div>
+        <div class="hero-visual">
+            <div class="robot-graphic">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-1v2h2a1 1 0 0 1 1 1v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4a1 1 0 0 1 1-1h2v-2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2V4a2 2 0 0 1 2-2h2zM9 9H7v2h2V9zm8 0h-2v2h2V9zm-5 5H8v2h4v-2z"/>
+                </svg>
+            </div>
+        </div>
+    </section>
 
-        <div class="showcase-wrapper" id="tiltContainer">
-            <div class="glass-card" id="tiltCard">
-                <div class="card-header">
-                    <div class="sys-status">
-                        <div class="pulse-dot"></div>
-                        <span>CORE NODE // ACTIVE</span>
-                    </div>
-                    <span style="font-size: 0.8rem; color: var(--neon-cyan); font-weight: 600;">v4.92</span>
+    <section class="modules-section">
+        <h2 class="section-title">SYSTEM MODULES</h2>
+        <div class="grid-container">
+            <div class="mod-card">
+                <div class="mod-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path></svg>
                 </div>
+                <h3>Import / Export</h3>
+                <p>Seamlessly compile structural multi-format engine assets directly into live neural hardware layers without conversions.</p>
+            </div>
+            <div class="mod-card">
+                <div class="mod-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l-7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                </div>
+                <h3>Modelling Basics</h3>
+                <p>Generate highly precise hardware chassis simulations via advanced mathematical spline definitions.</p>
+            </div>
+            <div class="mod-card">
+                <div class="mod-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <h3>Environment</h3>
+                <p>Construct complex physics-bound atmospheric conditions for accurate sensor cluster testing loops.</p>
+            </div>
+            <div class="mod-card">
+                <div class="mod-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <h3>Shaders</h3>
+                <p>Render physically precise metallic surfaces, optics, and carbon composites under varied structural stress lines.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="chart-section">
+        <h2 class="section-title">PERFORMANCE TRENDS</h2>
+        <div class="chart-container">
+            <div class="chart-header">
+                <h4 style="color:#fff;">Monthly Data Core Output</h4>
+                <span style="color:var(--brand-purple); font-size:0.85rem; font-weight:700;">+24.8% Sync Efficiency</span>
+            </div>
+            <svg class="chart-svg" viewBox="0 0 500 200" preserveAspectRatio="none">
+                <line class="chart-grid" x1="0" y1="40" x2="500" y2="40"></line>
+                <line class="chart-grid" x1="0" y1="90" x2="500" y2="90"></line>
+                <line class="chart-grid" x1="0" y1="140" x2="500" y2="140"></line>
                 
-                <div class="visualizer">
-                    <div class="core-mesh"></div>
-                </div>
+                <path class="chart-line" d="M 40,160 L 140,110 L 240,130 L 340,60 L 460,40"></path>
+                
+                <circle cx="40" cy="160" r="5" fill="#fff"></circle>
+                <circle cx="140" cy="110" r="5" fill="#fff"></circle>
+                <circle cx="240" cy="130" r="5" fill="#fff"></circle>
+                <circle cx="340" cy="60" r="5" fill="#fff"></circle>
+                <circle cx="460" cy="40" r="5" fill="var(--brand-purple)"></circle>
+            </svg>
+            <div class="chart-labels">
+                <span>JAN</span>
+                <span>FEB</span>
+                <span>MAR</span>
+                <span>APR</span>
+                <span>MAY</span>
+            </div>
+        </div>
+    </section>
 
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <div class="metric-label">Neural Synapse Speed</div>
-                        <div class="metric-value" id="synapseVal">94.21 Kp/s</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-label">Quantum Efficiency</div>
-                        <div class="metric-value">99.98%</div>
-                    </div>
+    <section class="carousel-section">
+        <h2 class="section-title">CASE STUDIES</h2>
+        <div class="carousel-wrapper">
+            <div class="slide active">
+                <div class="rating">★★★★★</div>
+                <h3>Quantum Sync Architecture</h3>
+                <p>"Implementing the Nexis structural modules into our automated manufacturing pipelines reduced chassis calibration overhead metrics by roughly 42% over our Q1 timeline."</p>
+            </div>
+            <div class="slide">
+                <div class="rating">★★★★☆</div>
+                <h3>Autonomous Swarm Routing</h3>
+                <p>"The environmental physics configurations generated highly predictable spatial paths when testing our drone swarm arrays under extreme meteorological parameters."</p>
+            </div>
+            <div class="slide">
+                <div class="rating">★★★★★</div>
+                <h3>Procedural Shader Optimization</h3>
+                <p>"Unbelievable rendering response. Designing real-time composite material stresses inside complex simulation environments is now entirely bottleneck-free."</p>
+            </div>
+
+            <div class="carousel-footer">
+                <div class="counter" id="carouselCounter">01/03</div>
+                <div class="nav-arrows">
+                    <button id="prevBtn" aria-label="Previous Slide">←</button>
+                    <button id="nextBtn" aria-label="Next Slide">→</button>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <section class="promo-banner">
+        <h2>READY TO UPGRADE YOUR PIPELINE?</h2>
+        <p>Get exclusive access to premium shader frameworks and advanced robotics modules with a 20% discount package today.</p>
+        <a href="#" class="btn btn-white">Get Started</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nexis Future Technology Inc. All rights reserved.</p>
+        <p>Designed with Premium Structural UI Design Aesthetics.</p>
+    </footer>
 
     <script>
-        const container = document.getElementById('tiltContainer');
-        const card = document.getElementById('tiltCard');
+        const slides = document.querySelectorAll('.slide');
+        const counterEl = document.getElementById('carouselCounter');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIdx = 0;
 
-        // Dynamic 3D Matrix Calculation logic on mouse movement
-        container.addEventListener('mousemove', (e) => {
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX - rect.left - (rect.width / 2);
-            const y = e.clientY - rect.top - (rect.height / 2);
-            
-            // Map structural tilt limits (-12deg to +12deg max)
-            const tiltX = (y / (rect.height / 2)) * -12; 
-            const tiltY = (x / (rect.width / 2)) * 12;
+        function updateCarousel() {
+            slides.forEach((slide, idx) => {
+                slide.classList.remove('active');
+                if (idx === currentIdx) {
+                    slide.classList.add('active');
+                }
+            });
+            // Formats to match standard structural design layout token "01/03"
+            counterEl.textContent = `0${currentIdx + 1}/0${slides.length}`;
+        }
 
-            card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+        nextBtn.addEventListener('click', () => {
+            currentIdx = (currentIdx + 1) % slides.length;
+            updateCarousel();
         });
 
-        // Reset elements smoothly back to normal coordinates when mouse leaves bounds
-        container.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            card.style.transition = "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
+        prevBtn.addEventListener('click', () => {
+            currentIdx = (currentIdx - 1 + slides.length) % slides.length;
+            updateCarousel();
         });
-
-        container.addEventListener('mouseenter', () => {
-            card.style.transition = "none";
-        });
-
-        // Simulating live telemetry data changes in the dashboard metrics
-        setInterval(() => {
-            const randomFluctuation = (93.8 + Math.random() * 1.6).toFixed(2);
-            document.getElementById('synapseVal').innerText = `${randomFluctuation} Kp/s`;
-        }, 2000);
     </script>
 </body>
 </html>
