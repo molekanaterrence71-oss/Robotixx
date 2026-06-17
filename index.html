@@ -6,7 +6,6 @@
     <title>Nexis AI Frameworks</title>
     <style>
         /* --- FUTURISTIC TYPOGRAPHY CONFIGURATION --- */
-        /* Fallbacks set up to mimic ultra-modern wide and tech display geometric typefaces */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
         :root {
@@ -93,7 +92,7 @@
             border-radius: 50%;
         }
 
-        /* --- HERO SECTION WITH LARGE ROBOTIC VISUALS --- */
+        /* --- HERO SECTION WITH IMAGE --- */
         .hero {
             padding: 100px 8% 80px 8%;
             display: grid;
@@ -169,30 +168,28 @@
             border-color: var(--light-lavender);
         }
 
-        /* Large Tech Illustration Vector Placeholder */
+        /* Hero Robot Image Box */
         .hero-visual {
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
         }
-        .robot-graphic {
+        .robot-image-container {
             width: 100%;
-            max-width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--brand-purple) 0%, transparent 70%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px dashed rgba(105, 82, 219, 0.4);
-            animation: pulseContainer 4s infinite ease-in-out;
+            max-width: 420px;
+            height: 420px;
+            border-radius: 24px;
+            border: 1px solid rgba(105, 82, 219, 0.3);
+            background: var(--dark-navy);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: floatAnimation 4s infinite ease-in-out;
         }
-        .robot-graphic svg {
-            width: 200px;
-            height: 200px;
-            fill: var(--light-lavender);
-            filter: drop-shadow(0 0 20px var(--brand-purple));
+        .robot-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Keeps aspect ratio clean */
         }
 
         /* --- MODULAR CONTENT CARDS SECTION --- */
@@ -227,16 +224,23 @@
             border-color: var(--brand-purple);
             box-shadow: 0 10px 30px rgba(9, 6, 26, 0.5);
         }
-        .mod-icon {
-            width: 45px; height: 45px;
-            background: rgba(105, 82, 219, 0.15);
+        
+        /* Thumbnail/Mini Illustration image layout */
+        .mod-thumbnail {
+            width: 100%;
+            height: 140px;
+            background-color: var(--dark-navy);
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin-bottom: 20px;
-            color: var(--brand-purple);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+        .mod-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
         .mod-card h3 {
             color: #fff;
             font-size: 1.3rem;
@@ -391,9 +395,9 @@
         }
 
         /* --- ANIMATIONS --- */
-        @keyframes pulseContainer {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(5px); }
@@ -407,6 +411,7 @@
             .cta-group { justify-content: center; }
             .hero-desc { margin-left: auto; margin-right: auto; }
             footer { flex-direction: column; gap: 15px; text-align: center; }
+            .robot-image-container { margin: 0 auto; }
         }
     </style>
 </head>
@@ -436,10 +441,8 @@
             </div>
         </div>
         <div class="hero-visual">
-            <div class="robot-graphic">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-1v2h2a1 1 0 0 1 1 1v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4a1 1 0 0 1 1-1h2v-2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2V4a2 2 0 0 1 2-2h2zM9 9H7v2h2V9zm8 0h-2v2h2V9zm-5 5H8v2h4v-2z"/>
-                </svg>
+            <div class="robot-image-container">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=500&q=80" alt="Futuristic Robotics Display">
             </div>
         </div>
     </section>
@@ -447,34 +450,39 @@
     <section class="modules-section">
         <h2 class="section-title">SYSTEM MODULES</h2>
         <div class="grid-container">
+            
             <div class="mod-card">
-                <div class="mod-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path></svg>
+                <div class="mod-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Import Export Interface">
                 </div>
                 <h3>Import / Export</h3>
                 <p>Seamlessly compile structural multi-format engine assets directly into live neural hardware layers without conversions.</p>
             </div>
+            
             <div class="mod-card">
-                <div class="mod-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l-7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                <div class="mod-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" alt="Modelling Basics">
                 </div>
                 <h3>Modelling Basics</h3>
                 <p>Generate highly precise hardware chassis simulations via advanced mathematical spline definitions.</p>
             </div>
+            
             <div class="mod-card">
-                <div class="mod-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <div class="mod-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=400&q=80" alt="Environment Engine">
                 </div>
                 <h3>Environment</h3>
                 <p>Construct complex physics-bound atmospheric conditions for accurate sensor cluster testing loops.</p>
             </div>
+            
             <div class="mod-card">
-                <div class="mod-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <div class="mod-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="Advanced Shaders">
                 </div>
                 <h3>Shaders</h3>
                 <p>Render physically precise metallic surfaces, optics, and carbon composites under varied structural stress lines.</p>
             </div>
+            
         </div>
     </section>
 
@@ -489,9 +497,7 @@
                 <line class="chart-grid" x1="0" y1="40" x2="500" y2="40"></line>
                 <line class="chart-grid" x1="0" y1="90" x2="500" y2="90"></line>
                 <line class="chart-grid" x1="0" y1="140" x2="500" y2="140"></line>
-                
                 <path class="chart-line" d="M 40,160 L 140,110 L 240,130 L 340,60 L 460,40"></path>
-                
                 <circle cx="40" cy="160" r="5" fill="#fff"></circle>
                 <circle cx="140" cy="110" r="5" fill="#fff"></circle>
                 <circle cx="240" cy="130" r="5" fill="#fff"></circle>
@@ -562,7 +568,6 @@
                     slide.classList.add('active');
                 }
             });
-            // Formats to match standard structural design layout token "01/03"
             counterEl.textContent = `0${currentIdx + 1}/0${slides.length}`;
         }
 
