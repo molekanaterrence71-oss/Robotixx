@@ -42,13 +42,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(25, 19, 60, 0.7);
+            background: rgba(25, 19, 60, 0.85);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(105, 82, 219, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
-            gap: 20px;
         }
 
         .logo {
@@ -61,10 +60,17 @@
         }
         .logo span { color: var(--brand-purple); }
 
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
         .nav-links {
             display: flex;
             gap: 25px;
             list-style: none;
+            transition: all 0.3s ease;
         }
 
         .nav-links a {
@@ -97,6 +103,7 @@
             outline: none;
             font-size: 0.85rem;
             transition: border-color 0.3s ease;
+            width: 180px;
         }
 
         .search-box:focus {
@@ -112,12 +119,22 @@
             position: relative;
             padding: 5px;
         }
+        
         .icon-btn .badge {
             position: absolute;
             top: 0; right: 0;
             background: var(--brand-purple);
             width: 6px; height: 6px;
             border-radius: 50%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* --- TWO-COLUMN HERO SECTION --- */
@@ -129,9 +146,9 @@
             align-items: center;
             position: relative;
             background-color: var(--deep-black);
+            min-height: 80vh;
         }
 
-        /* Ambient glowing orb behind text */
         .hero::before {
             content: '';
             position: absolute;
@@ -172,11 +189,12 @@
         .cta-group {
             display: flex;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .btn {
             padding: 14px 32px;
-            border-radius: 50px; /* Changed from 8px to 50px for the pill shape */
+            border-radius: 50px; /* Pill shape */
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -184,6 +202,8 @@
             text-transform: uppercase;
             font-size: 0.9rem;
             letter-spacing: 1px;
+            text-align: center;
+            display: inline-block;
         }
         .btn-primary {
             background: var(--brand-purple);
@@ -212,10 +232,11 @@
             align-items: center;
             position: relative;
             z-index: 2;
+            width: 100%;
         }
         
         .hero-visual img {
-            width: 70%;
+            width: 70%; /* Takes exactly 70% of the right side on desktop */
             height: auto;
             display: block;
             animation: floatAnimation 5s infinite ease-in-out;
@@ -292,6 +313,10 @@
             border: 1px solid rgba(105, 82, 219, 0.2);
             padding: 30px;
             border-radius: 16px;
+            overflow-x: auto; /* Allows scrolling on small screens */
+        }
+        .chart-wrapper {
+            min-width: 450px; /* Prevents squishing on mobile */
         }
         .chart-header {
             display: flex;
@@ -403,17 +428,139 @@
             font-size: 1.1rem;
             opacity: 0.9;
         }
+        .btn-white {
+            background: #fff;
+            color: var(--dark-navy);
+        }
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
 
-        /* --- FOOTER SECTION --- */
+        /* --- PROFESSIONAL FOOTER SECTION --- */
         footer {
-            padding: 40px 8%;
             background: #060412;
             border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 60px 8% 20px 8%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-headings);
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .brand-col p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin: 15px 0 25px 0;
+            max-width: 280px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light-lavender);
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--brand-purple);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .links-col ul {
+            list-style: none;
+        }
+
+        .links-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .links-col ul a {
+            color: var(--light-lavender);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .links-col ul a:hover {
+            color: var(--brand-purple);
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        .newsletter-col p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            padding: 12px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(105, 82, 219, 0.3);
+            color: #fff;
+            outline: none;
+            font-family: var(--font-body);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--brand-purple);
+        }
+
+        .newsletter-form button {
+            width: 100%;
+        }
+
+        .footer-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
             opacity: 0.6;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .legal-links a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .legal-links a:hover {
+            color: #fff;
         }
 
         /* --- ANIMATIONS --- */
@@ -426,20 +573,55 @@
             50% { transform: translateY(-12px); }
         }
 
-        /* --- RESPONSIVE LAYOUT --- */
-        @media (max-width: 968px) {
-            header { flex-direction: column; padding: 20px 4%; gap: 15px; }
-            .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+        /* --- RESPONSIVE / MOBILE OPTIMIZATION --- */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            /* Header & Nav */
+            header { flex-wrap: wrap; padding: 15px 5%; }
+            .mobile-menu-btn { display: block; }
             
-            .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; padding: 60px 4%; }
-            .hero-content { margin: 0 auto; text-align: center; }
-            .hero-content h1 { font-size: 3.2rem; }
-            .hero-desc { margin: 0 auto 30px auto; }
+            .nav-wrapper {
+                flex-direction: column;
+                width: 100%;
+                display: none; /* Hidden by default on mobile, toggled by JS */
+                gap: 20px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(105, 82, 219, 0.2);
+                margin-top: 15px;
+            }
+            .nav-wrapper.active { display: flex; }
+            
+            .nav-links { flex-direction: column; align-items: center; width: 100%; }
+            .search-box { width: 100%; max-width: 300px; }
+            .header-controls { width: 100%; justify-content: center; }
+
+            /* Sections Spacing */
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; padding: 60px 5%; min-height: auto; }
+            .modules-section, .chart-section, .carousel-section { padding: 50px 5%; }
+            .promo-banner { margin: 40px 5%; padding: 40px 20px; }
+
+            /* Hero Content Adjustments */
+            .hero-content { margin: 0 auto; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-desc { margin: 0 auto 30px auto; font-size: 1rem; }
             .cta-group { justify-content: center; }
             
-            .hero-visual img { width: 85%; }
-            
-            footer { flex-direction: column; gap: 15px; text-align: center; }
+            /* Hero Image Mobile Adjustments */
+            .hero-visual img { width: 100%; max-width: 450px; }
+
+            /* Typography Scaling */
+            .section-title { font-size: 2rem; }
+            .promo-banner h2 { font-size: 1.8rem; }
+
+            /* Footer Mobile Adjustments */
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .brand-col p { margin: 15px auto 25px auto; }
+            .social-icons { justify-content: center; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
@@ -448,25 +630,29 @@
     <header>
         <div class="logo">NEXIS<span>.</span></div>
         
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Reviews</a></li>
-                <li><a href="#">Social</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-        </nav>
+        <button class="mobile-menu-btn" id="menuToggle" aria-label="Toggle Menu">☰</button>
 
-        <div class="header-controls">
-            <input type="text" class="search-box" placeholder="Search systems...">
-            <button class="icon-btn" aria-label="Notifications">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                <span class="badge"></span>
-            </button>
-            <button class="icon-btn" aria-label="Cart">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-            </button>
+        <div class="nav-wrapper" id="navWrapper">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Social</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-controls">
+                <input type="text" class="search-box" placeholder="Search systems...">
+                <button class="icon-btn" aria-label="Notifications">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span class="badge"></span>
+                </button>
+                <button class="icon-btn" aria-label="Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -527,27 +713,29 @@
     <section class="chart-section">
         <h2 class="section-title">PERFORMANCE TRENDS</h2>
         <div class="chart-container">
-            <div class="chart-header">
-                <h4 style="color:#fff;">Monthly Data Core Output</h4>
-                <span style="color:var(--brand-purple); font-size:0.85rem; font-weight:700;">+24.8% Sync Efficiency</span>
-            </div>
-            <svg class="chart-svg" viewBox="0 0 500 200" preserveAspectRatio="none">
-                <line class="chart-grid" x1="0" y1="40" x2="500" y2="40"></line>
-                <line class="chart-grid" x1="0" y1="90" x2="500" y2="90"></line>
-                <line class="chart-grid" x1="0" y1="140" x2="500" y2="140"></line>
-                <path class="chart-line" d="M 40,160 L 140,110 L 240,130 L 340,60 L 460,40"></path>
-                <circle cx="40" cy="160" r="5" fill="#fff"></circle>
-                <circle cx="140" cy="110" r="5" fill="#fff"></circle>
-                <circle cx="240" cy="130" r="5" fill="#fff"></circle>
-                <circle cx="340" cy="60" r="5" fill="#fff"></circle>
-                <circle cx="460" cy="40" r="5" fill="var(--brand-purple)"></circle>
-            </svg>
-            <div class="chart-labels">
-                <span>JAN</span>
-                <span>FEB</span>
-                <span>MAR</span>
-                <span>APR</span>
-                <span>MAY</span>
+            <div class="chart-wrapper">
+                <div class="chart-header">
+                    <h4 style="color:#fff;">Monthly Data Core Output</h4>
+                    <span style="color:var(--brand-purple); font-size:0.85rem; font-weight:700;">+24.8% Sync Efficiency</span>
+                </div>
+                <svg class="chart-svg" viewBox="0 0 500 200" preserveAspectRatio="none">
+                    <line class="chart-grid" x1="0" y1="40" x2="500" y2="40"></line>
+                    <line class="chart-grid" x1="0" y1="90" x2="500" y2="90"></line>
+                    <line class="chart-grid" x1="0" y1="140" x2="500" y2="140"></line>
+                    <path class="chart-line" d="M 40,160 L 140,110 L 240,130 L 340,60 L 460,40"></path>
+                    <circle cx="40" cy="160" r="5" fill="#fff"></circle>
+                    <circle cx="140" cy="110" r="5" fill="#fff"></circle>
+                    <circle cx="240" cy="130" r="5" fill="#fff"></circle>
+                    <circle cx="340" cy="60" r="5" fill="#fff"></circle>
+                    <circle cx="460" cy="40" r="5" fill="var(--brand-purple)"></circle>
+                </svg>
+                <div class="chart-labels">
+                    <span>JAN</span>
+                    <span>FEB</span>
+                    <span>MAR</span>
+                    <span>APR</span>
+                    <span>MAY</span>
+                </div>
             </div>
         </div>
     </section>
@@ -587,12 +775,83 @@
         <a href="#" class="btn btn-white">Get Started</a>
     </section>
 
+    <!-- Refactored Professional Footer -->
     <footer>
-        <p>&copy; 2026 Nexis Future Technology Inc. All rights reserved.</p>
-        <p>Designed with Premium Structural UI Design Aesthetics.</p>
+        <div class="footer-grid">
+            
+            <div class="footer-col brand-col">
+                <div class="logo">NEXIS<span>.</span></div>
+                <p>Advanced structural engine workflows and procedural asset environments for the decentralized era.</p>
+                <div class="social-icons">
+                    <!-- Placeholder SVGs for Social Media -->
+                    <a href="#" aria-label="Twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="#">Engine Frameworks</a></li>
+                    <li><a href="#">Robotics Modules</a></li>
+                    <li><a href="#">Decentralized Sync</a></li>
+                    <li><a href="#">Pricing Tiers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Community Forum</a></li>
+                    <li><a href="#">Support Hub</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col newsletter-col">
+                <h4>Stay Updated</h4>
+                <p>Join 15,000+ engineers receiving our latest infrastructure updates.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nexis Future Technology Inc. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
     </footer>
 
     <script>
+        // Mobile Menu Toggle Logic
+        const menuToggle = document.getElementById('menuToggle');
+        const navWrapper = document.getElementById('navWrapper');
+
+        menuToggle.addEventListener('click', () => {
+            navWrapper.classList.toggle('active');
+            if(navWrapper.classList.contains('active')) {
+                menuToggle.textContent = '✕';
+            } else {
+                menuToggle.textContent = '☰';
+            }
+        });
+
+        // Carousel Logic
         const slides = document.querySelectorAll('.slide');
         const counterEl = document.getElementById('carouselCounter');
         const prevBtn = document.getElementById('prevBtn');
