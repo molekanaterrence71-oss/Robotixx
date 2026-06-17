@@ -124,7 +124,8 @@
         .hero {
             padding: 100px 8% 80px 8%;
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            /* Adjusted ratio to give the right side more space so the 70% rule yields a larger image */
+            grid-template-columns: 40% 60%;
             gap: 50px;
             align-items: center;
             position: relative;
@@ -205,7 +206,7 @@
             border-color: var(--light-lavender);
         }
 
-        /* Hero Right-Side Image Container */
+        /* Hero Right-Side Image */
         .hero-visual {
             display: flex;
             justify-content: center;
@@ -214,22 +215,13 @@
             z-index: 2;
         }
         
-        .image-wrapper {
-            width: 100%;
-            max-width: 480px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(105, 82, 219, 0.3);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(105, 82, 219, 0.15);
-            animation: floatAnimation 5s infinite ease-in-out;
-            background: var(--dark-navy);
-        }
-
-        .image-wrapper img {
-            width: 100%;
+        .hero-visual img {
+            width: 70%; /* Takes exactly 70% of the right side */
             height: auto;
             display: block;
-            object-fit: cover;
+            animation: floatAnimation 5s infinite ease-in-out;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 30px rgba(105, 82, 219, 0.15));
+            border-radius: 12px; /* Slight softening of the raw edges if desired */
         }
 
         /* --- MODULAR CONTENT CARDS SECTION --- */
@@ -455,6 +447,9 @@
             .hero-desc { margin: 0 auto 30px auto; }
             .cta-group { justify-content: center; }
             
+            /* Ensure the image remains well-sized on mobile */
+            .hero-visual img { width: 85%; }
+            
             footer { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
@@ -486,7 +481,6 @@
         </div>
     </header>
 
-    <!-- Refactored Two-Column Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>AUTOMATED<br><span>ROBOTIC CORE</span></h1>
@@ -498,9 +492,8 @@
         </div>
         
         <div class="hero-visual">
-            <div class="image-wrapper">
-                <img src="https://i.postimg.cc/c4GmLVXQ/craiyon-021832-image.png" alt="Nexis Systems Graphical Interface">
-            </div>
+            <!-- Image removed from container wrapper and placed directly inside the visual block -->
+            <img src="https://i.postimg.cc/c4GmLVXQ/craiyon-021832-image.png" alt="Nexis Systems Graphical Interface">
         </div>
     </section>
 
