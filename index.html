@@ -186,12 +186,13 @@
             max-width: 550px;
         }
 
+        /* UPDATED: CTA Group for side-by-side alignment */
         .cta-group {
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: flex-start;
-            align-items: center; /* Explicit alignment */
+            align-items: center;
         }
 
         .btn {
@@ -206,6 +207,7 @@
             letter-spacing: 1px;
             text-align: center;
             display: inline-block;
+            white-space: nowrap; /* Prevents text wrapping */
         }
         .btn-primary {
             background: var(--brand-purple);
